@@ -21,8 +21,28 @@ export class Db {
      depends on Query 
     */
 
-    getAllFields = () => {}
+    getAllFields = async () => {
+        const results = await this.db.find();
+        if(!results) throw new Error("no result found")
+        return results
+    }
 
+    /**
+     * search by query in one field
+     */
+    getOneByQuery = async(q : any) =>{
+        const results = await this.db.findOne(q);
+        if(!results) throw new Error("no result found")
+        return results
+    }
+
+    /**
+     * manage returned data
+     */
+    manageReturnedResult = (results : any) => {        
+        if(!results) throw new Error("no result found")
+        return results
+    }
     getAllFieldsFromArray = () => {}
 
     getAllFieldsFromObject = () => {}
